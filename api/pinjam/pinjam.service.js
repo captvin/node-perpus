@@ -51,7 +51,7 @@ module.exports = {
                                             db.query(
                                                 `insert into tb_pinjam set ?`,
                                                 [data],
-                                                (err,result)=>{
+                                                (err,results)=>{
                                                     if (err) {
                                                         return callBack(err);
                                                     }
@@ -60,14 +60,14 @@ module.exports = {
                                                         db.query(
                                                             `select * from tb_buku where kd_buku = ?`,
                                                             [data.kd_buku],
-                                                            (err,result)=>{
+                                                            (err,results)=>{
                                                                 if (err) {
                                                                     console.log(err);
                                                                     return;
                                                                 }
 
                                                                 else{
-                                                                    hasil = result[0].stok - 1;
+                                                                    hasil = results[0].stok - 1;
                                                                     db.query(
                                                                         `update tb_buku set stok=? where kd_buku = ?`,
                                                                         [hasil, data.kd_buku]
@@ -152,7 +152,7 @@ module.exports = {
                     db.query(
                         `delete from tb_pinjam where no_pinjam = ?`,
                         [data.no_pinjam],
-                        (err, result) => {
+                        (err, results) => {
                             if (err) {
                                 return callBack(err);
                             } 
@@ -178,7 +178,7 @@ module.exports = {
                                         }
                                     }
                                 );
-                                return callBack(null,result[0]);
+                                return callBack(null,results);
                             }
                         }
                     );

@@ -24,7 +24,7 @@ module.exports = {
             tgl_balik: kembali,
         };
 
-        add(data_pinjam,(err,result)=>{
+        add(data_pinjam,(err,results)=>{
             if(err){
                 if(err === "BNF"){
                     return res.json({
@@ -57,7 +57,7 @@ module.exports = {
             else{
                 return res.json({
                     success: 1,
-                    data: result,
+                    data: results,
                 });
             }
         });
